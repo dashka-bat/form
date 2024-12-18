@@ -1,21 +1,25 @@
+"use client"
 import Image from "next/image";
-import { Form } from "./component/Form";
-import { Step2 } from "./component/step3";
 import { Step3 } from "./component/step3";
-import { Card } from "./component/Card";
-import Step1 from "./component/step1";
+import { Step2 } from "./component/steps2";
+import { Step1 } from "./component/step1";
 import { useState } from "react";
-import { FunctionSquare } from "lucide-react";
-
-const [step, setStep] = useState(1);
-function changeSetstep(props) {
-  setStep(step + 1);
-}
 
 export default function Home() {
+
+  const [currentStep,setCurrentStep]=useState(1)
+  const nextStep=()=>{
+    setCurrentStep(currentStep +1)
+    const backstep=()=>{
+      
+    }
+  
+  }
   return (
     <div>
-      <Step1 key={index} setStep={changeSetstep} />
+      {currentStep==1 &&  <Step1   setCurrentStep={nextStep}/> }
+      {currentStep==2 &&  <Step2  setCurrentStep={nextStep}/> }
+      {currentStep==3 &&  <Step3  setCurrentStep={nextStep}/> }
     </div>
   );
 }
