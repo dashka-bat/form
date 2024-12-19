@@ -39,7 +39,7 @@ export const Step1 = ({
               <p className="text-red-700">{firstname}</p>
             </div>
             <div className="ml-[32px]">
-              <label htmlFor="firstName"> Lastname *</label>
+              <label htmlFor="lastName"> Lastname *</label>
               <input
                 id="lastname"
                 className="border-[2px] border-blue-400 w-[416px] h-[44px] rounded-md mt-[8px]"
@@ -51,7 +51,7 @@ export const Step1 = ({
             </div>
 
             <div className="ml-[32px]">
-              <label htmlFor="firstName"> Username *</label>
+              <label htmlFor="userName"> Username *</label>
               <input
                 id="username"
                 className="border-[2px] border-blue-400 w-[416px] h-[44px] rounded-md mt-[8px]"

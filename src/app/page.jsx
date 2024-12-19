@@ -6,10 +6,12 @@ import { Step1 } from "./component/step1";
 import { Step4 } from "./component/laststep";
 import { useState } from "react";
 
+
 export default function Home() {
   const [currentStep, setCurrentStep] = useState(1);
   const [form, setForm] = useState({
     firstname: "",
+    username:"",
     lastname: "",
     email: "",
     phone: "",
@@ -18,6 +20,7 @@ export default function Home() {
   });
   const [error, setError] = useState({
     firstname: "",
+    username: "",
     lastname: "",
   });
   const onChange = (e) => {
@@ -25,9 +28,9 @@ export default function Home() {
     const ids = e.target.id;
     const newValues = { ...form, [ids]: value };
     setForm(newValues);
-    if (value === " ") {
+    if (value === "" && ids==="firstname",ids==="lastname",ids==="username") {
       setError({ ...error, [ids]: "empty " });
-    } else if (checkNumber(value)) {
+    } else if (checkNumber(value)&& ids==="firstname", ids==="lastname") {
       setError({
         ...error,
         [ids]: " cannot contain numbers. ",
@@ -39,12 +42,14 @@ export default function Home() {
       });
     } else if (checkLowercase(value)) {
       setError({ ...error, [ids]: "ehnii useg jijig baihgue ho" });
-    } else if (checkLenght(value)) {
-      setError({});
-    } else {
+    }else if(checkUsername(value) && ids==="username"){
+      setError({...error,[ids]:"urt 5aas urt bailgachih guijen"})
+
+    }  else {
       setError({ ...error, [ids]: "" });
     }
   };
+  
   const nextStep = () => {
     setCurrentStep(currentStep + 1);
   };
@@ -77,7 +82,21 @@ export default function Home() {
       }
     }
   };
-  const checkLenght = (value) => {};
+  const checkUsername=(value)=>{
+    
+    if(value.length<5){return true;}
+      
+    return false;
+      }
+//   const checkLenght = (value) => {
+//     for(let i=0;value.length>i;i++){
+//       if(value.length<5&&ids===username){
+// return true;
+//       }else{
+//         return false;
+//       }
+//     }
+//   };
   return (
     <div>
       {currentStep == 1 && (
@@ -85,6 +104,7 @@ export default function Home() {
           firstname={error.firstname}
           lastname={error.lastname}
           form={form}
+          username={error.username}
           onChange={onChange}
           backStep={backStep}
           setCurrentStep={nextStep}
@@ -92,7 +112,8 @@ export default function Home() {
       )}
       {currentStep == 2 && (
         <Step2
-          error={error}
+          
+          
           form={form}
           onChange={onChange}
           backStep={backStep}
