@@ -17,20 +17,48 @@ export const Step2 = ({ setCurrentStep, backStep, onChange, form }) => {
           </p>
           <form>
             <div className="ml-[32px]">
-              <label htmlFor="firstName"> Firstname *</label>
-              <Form />
+              <label htmlFor="firstName"> Email *</label>
+              <div>
+                <input
+                  onChange={onChange}
+                  className="border-[2px] border-blue-400 w-[416px] h-[44px] rounded-md mt-[8px]"
+                  type="text"
+                  placeholder="place holder"
+                />
+              </div>
             </div>
             <div className="ml-[32px]">
-              <label htmlFor="firstName"> Lastname *</label>
-              <Form />
+              <label htmlFor="firstName">Phone Number *</label>
+              <div>
+                <input
+                  onChange={onChange}
+                  className="border-[2px] border-blue-400 w-[416px] h-[44px] rounded-md mt-[8px]"
+                  type="text"
+                  placeholder="place holder"
+                />
+              </div>
             </div>
             <div className="ml-[32px]">
               <label htmlFor="firstName"> Password *</label>
-              <Form />
+              <div>
+                <input
+                  onChange={onChange}
+                  className="border-[2px] border-blue-400 w-[416px] h-[44px] rounded-md mt-[8px]"
+                  type="text"
+                  placeholder="place holder"
+                />
+              </div>
             </div>
             <div className="ml-[32px]">
               <label htmlFor="firstName"> Confirm Password *</label>
-              <Form />
+              <div>
+                <input
+                  onChange={onChange}
+                  className="border-[2px] border-blue-400 w-[416px] h-[44px] rounded-md mt-[8px]"
+                  type="text"
+                  placeholder="place holder"
+                />
+              </div>
             </div>
           </form>
           <button
@@ -47,7 +75,7 @@ export const Step2 = ({ setCurrentStep, backStep, onChange, form }) => {
             }}
             className="ml-[8px] rounded-md bg-gray-300 mt-[80px] w-[316px] h-[44px]"
           >
-            contiune 2/3 --
+            contiune 2/3 →
           </button>
         </div>
       </div>

@@ -11,25 +11,39 @@ export default function Home() {
   const [form, setForm] = useState({
     firstname: "",
     lastname: "",
+    email: "",
+    phone: "",
+    Password: "",
+    ConfirmPassword: "",
   });
-  const[error,setError]=useState({
-    firstname:"",
-    lastname:"",
-  })
-  
+  const [error, setError] = useState({
+    firstname: "",
+    lastname: "",
+  });
   const onChange = (e) => {
-    const value=e.target.value
-    const ids=e.target.id
-    const newValues={...form,[ids]:value}
-    setForm(newValues)
-if(value===""){
-  setError({...error,[ids]:"hoosn bn "})
-}else if(checkNumber(value)){
-  setError({...error,[ids]:"too baij bolhgui "})
-
-} else{setError({...error,[ids]:""})}
-
-    
+    const value = e.target.value;
+    const ids = e.target.id;
+    const newValues = { ...form, [ids]: value };
+    setForm(newValues);
+    if (value === " ") {
+      setError({ ...error, [ids]: "empty " });
+    } else if (checkNumber(value)) {
+      setError({
+        ...error,
+        [ids]: " cannot contain numbers. ",
+      });
+    } else if (checkRegex(value)) {
+      setError({
+        ...error,
+        [ids]: " cannot contain special characters ",
+      });
+    } else if (checkLowercase(value)) {
+      setError({ ...error, [ids]: "ehnii useg jijig baihgue ho" });
+    } else if (checkLenght(value)) {
+      setError({});
+    } else {
+      setError({ ...error, [ids]: "" });
+    }
   };
   const nextStep = () => {
     setCurrentStep(currentStep + 1);
@@ -37,22 +51,39 @@ if(value===""){
   const backStep = () => {
     setCurrentStep(currentStep - 1);
   };
-  const checkNumber=(value)=>{
-    for(let i=0;value.length>i;i++){
-      if(value[i]>=0 && value[i]<=9 ){
-        return true
+  const checkNumber = (value) => {
+    for (let i = 0; value.length > i; i++) {
+      if (value[i] >= 0 && value[i] <= 9) {
+        return true;
       }
     }
-    return false
-  }
+    return false;
+  };
+  const checkLowercase = (value) => {
+    for (let i = 0; value.length > i; i++) {
+      if (value.substring(0, 1) === value.substring(0, 1).toLowerCase()) {
+        return true;
+      }
+    }
+    return false;
+  };
+  const checkRegex = (value) => {
+    let regex = /[!@#$%^&*()()_+;'//.,-={|)__+}""[:?<>]/;
+    for (let i = 0; value.length > i; i++) {
+      if (regex.test(value)) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  };
+  const checkLenght = (value) => {};
   return (
     <div>
       {currentStep == 1 && (
-        <Step1 
-     
-        firstname={error.firstname}
-        lastname={error.lastname}
-        
+        <Step1
+          firstname={error.firstname}
+          lastname={error.lastname}
           form={form}
           onChange={onChange}
           backStep={backStep}
@@ -61,7 +92,7 @@ if(value===""){
       )}
       {currentStep == 2 && (
         <Step2
-        error={error}
+          error={error}
           form={form}
           onChange={onChange}
           backStep={backStep}

@@ -54,7 +54,7 @@ export const Step3 = ({ setCurrentStep, backStep, onChange, form }) => {
             }}
             className="ml-[8px] rounded-md bg-gray-300 mt-[140px] w-[316px] h-[44px]"
           >
-            contiune 3/3 --
+            contiune 3/3 →
           </button>
         </div>
       </div>
