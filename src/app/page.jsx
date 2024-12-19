@@ -12,8 +12,24 @@ export default function Home() {
     firstname: "",
     lastname: "",
   });
-  const onChange = () => {
-    setForm();
+  const[error,setError]=useState({
+    firstname:"",
+    lastname:"",
+  })
+  
+  const onChange = (e) => {
+    const value=e.target.value
+    const ids=e.target.id
+    const newValues={...form,[ids]:value}
+    setForm(newValues)
+if(value===""){
+  setError({...error,[ids]:"hoosn bn "})
+}else if(checkNumber(value)){
+  setError({...error,[ids]:"too baij bolhgui "})
+
+} else{setError({...error,[ids]:""})}
+
+    
   };
   const nextStep = () => {
     setCurrentStep(currentStep + 1);
@@ -21,10 +37,22 @@ export default function Home() {
   const backStep = () => {
     setCurrentStep(currentStep - 1);
   };
+  const checkNumber=(value)=>{
+    for(let i=0;value.length>i;i++){
+      if(value[i]>=0 && value[i]<=9 ){
+        return true
+      }
+    }
+    return false
+  }
   return (
     <div>
       {currentStep == 1 && (
-        <Step1
+        <Step1 
+     
+        firstname={error.firstname}
+        lastname={error.lastname}
+        
           form={form}
           onChange={onChange}
           backStep={backStep}
@@ -33,6 +61,7 @@ export default function Home() {
       )}
       {currentStep == 2 && (
         <Step2
+        error={error}
           form={form}
           onChange={onChange}
           backStep={backStep}
