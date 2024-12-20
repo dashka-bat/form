@@ -7,12 +7,11 @@ import { Step4 } from "./component/laststep";
 import { useState } from "react";
 import { Phone } from "lucide-react";
 
-
 export default function Home() {
   const [currentStep, setCurrentStep] = useState(1);
   const [form, setForm] = useState({
     firstname: "",
-    username:"",
+    username: "",
     lastname: "",
     email: "",
     phone: "",
@@ -33,49 +32,63 @@ export default function Home() {
     const ids = e.target.id;
     const newValues = { ...form, [ids]: value };
     setForm(newValues);
-    if (value === "" && ids==="firstname") {
+    if (value === "" && ids === "firstname") {
       setError({ ...error, [ids]: "empty " });
-    } else if (checkNumber(value)&& ids==="firstname") {
+    } else if (checkNumber(value) && ids === "firstname") {
       setError({
         ...error,
         [ids]: " cannot contain numbers. ",
       });
-    } else if (checkRegex(value)&&ids==="firstname") {
+    } else if (checkRegex(value) && ids === "firstname") {
       setError({
         ...error,
         [ids]: " cannot contain special characters ",
       });
-    } else if (checkLowercase(value)&&ids==="firstname") {
+    } else if (checkLowercase(value) && ids === "firstname") {
       setError({ ...error, [ids]: "ehnii useg jijig baihgue ho" });
-    } else if (value === "" && ids==="lastname") {
+    } else if (value === "" && ids === "lastname") {
       setError({ ...error, [ids]: "empty " });
-    } else if (checkNumber(value)&& ids==="lastname") {
+    } else if (checkNumber(value) && ids === "lastname") {
       setError({
         ...error,
         [ids]: " cannot contain numbers. ",
       });
-    } else if (checkRegex(value)&&ids==="lastname") {
+    } else if (checkRegex(value) && ids === "lastname") {
       setError({
         ...error,
         [ids]: " cannot contain special characters ",
       });
-    } else if (checkLowercase(value)&&ids==="lastname") {
+    } else if (checkLowercase(value) && ids === "lastname") {
       setError({ ...error, [ids]: "ehnii useg jijig baihgue ho" });
-    }else if (value === "" && ids==="username") {
+    } else if (value === "" && ids === "username") {
       setError({ ...error, [ids]: "empty " });
-    }else if (value === "" && ids==="email") {
+    } else if (value === "" && ids === "email") {
       setError({ ...error, [ids]: "empty " });
-    }else if(!checkEmail(value)&&ids==="email")setError({...error, [ids]: "@ zaaval bich"
-
-    })
-    else if(checkUsername(value) && ids==="username"){
-      setError({...error,[ids]:"urt 5aas urt bailgachih guijen"})
-
-    }  else {
+    } else if (!checkEmail(value) && ids === "email")
+      setError({ ...error, [ids]: "@  zaaval bich" });
+    else if (checkDot(value) && ids === "email") {
+      setError({ ...error, [ids]: "tseg bichih" });
+    } else if (checkUsername(value) && ids === "username") {
+      setError({ ...error, [ids]: "urt 5aas urt bailgachih guijen" });
+    } else if (value === "" && ids === "phone") {
+      setError({ ...error, [ids]: "empty " });
+    } else if (checkNumber2(value) && ids === "phone") {
+      setError({ ...error, [ids]: "only number" });
+    } else if (value === "" && ids === "Password") {
+      setError({ ...error, [ids]: "empty " });
+    } else if (checkLowercase(value) && ids === "Password") {
+      setError({ ...error, [ids]: "ehnii useg jijig baihgue ho" });
+    } else if (checkLength(value) && ids === "Password") {
+      setError({ ...error, [ids]: "urt 8aas deesh bh ystoi" });
+    } else if (value === "" && ids === "ConfirmPassword") {
+      setError({ ...error, [ids]: "empty " });
+    } else if (value !== form.Password && ids === "ConfirmPassword") {
+      setError({ ...error, [ids]: "Taardague ho" });
+    } else {
       setError({ ...error, [ids]: "" });
     }
   };
-  
+
   const nextStep = () => {
     setCurrentStep(currentStep + 1);
   };
@@ -108,26 +121,51 @@ export default function Home() {
       }
     }
   };
-  const checkUsername=(value)=>{
-    
-    if(value.length<5){return true;}
-      
+  const checkUsername = (value) => {
+    if (value.length < 5) {
+      return true;
+    }
+
     return false;
+  };
+  const checkLength = (value) => {
+    if (value.length < 8) {
+      return true;
+    }
+
+    return false;
+  };
+  const checkEmail = (value) => {
+    for (let i = 0; value.length > i; i++) {
+      if (value[i] === "@") {
+        return true;
       }
-       const checkEmail=(value)=>{ for(let i=0;value.length>i;i++){ if(value[i]==="@"){
-        return true
-       }}return false
-       
-       }
-//   const checkLenght = (value) => {
-//     for(let i=0;value.length>i;i++){
-//       if(value.length<5&&ids===username){
-// return true;
-//       }else{
-//         return false;
-//       }
-//     }
-//   };
+    }
+    return false;
+  };
+  const checkNumber2 = (value) => {
+    if (/[A-Z]|[a-z]/.test(value)) {
+      return true;
+    }
+    return false;
+  };
+  const checkDot = (value) => {
+    for (let i = 0; i < value.length; i++) {
+      if (!/[\.]/.test(value)) {
+        return true;
+      }
+      return false;
+    }
+  };
+  //   const checkLenght = (value) => {
+  //     for(let i=0;value.length>i;i++){
+  //       if(value.length<5&&ids===username){
+  // return true;
+  //       }else{
+  //         return false;
+  //       }
+  //     }
+  //   };
   return (
     <div>
       {currentStep == 1 && (
@@ -135,20 +173,19 @@ export default function Home() {
           firstname={error.firstname}
           lastname={error.lastname}
           form={form}
-          
           username={error.username}
           onChange={onChange}
           backStep={backStep}
           setCurrentStep={nextStep}
+          enableButton={error}
         />
       )}
       {currentStep == 2 && (
         <Step2
-        email={error.email}
-        phone={error.phone}
-         Password={error.Password}
-         ConfirmPassword={error.ConfirmPassword}
-          
+          email={error.email}
+          phone={error.phone}
+          Password={error.Password}
+          ConfirmPassword={error.ConfirmPassword}
           form={form}
           onChange={onChange}
           backStep={backStep}

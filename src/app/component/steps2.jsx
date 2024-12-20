@@ -1,7 +1,16 @@
 import Image from "next/image";
 import { Form } from "./Form";
 
-export const Step2 = ({ setCurrentStep, backStep, onChange, form,email,phone,Password,ConfirmPassword }) => {
+export const Step2 = ({
+  setCurrentStep,
+  backStep,
+  onChange,
+  form,
+  email,
+  phone,
+  Password,
+  ConfirmPassword,
+}) => {
   return (
     <div>
       <div className="bg-gray-300 w-screen h-screen flex justify-center items-center">
@@ -20,46 +29,52 @@ export const Step2 = ({ setCurrentStep, backStep, onChange, form,email,phone,Pas
               <label htmlFor="firstName"> Email *</label>
               <div>
                 <input
-                id="email"
+                  id="email"
                   onChange={onChange}
                   className="border-[2px] border-blue-400 w-[416px] h-[44px] rounded-md mt-[8px]"
                   type="text"
                   placeholder="place holder"
-                /> <p className="text-red-700">{email}</p>
+                />{" "}
+                <p className="text-red-700">{email}</p>
               </div>
             </div>
             <div className="ml-[32px]">
               <label htmlFor="firstName">Phone Number *</label>
               <div>
-                <input id="phone"
+                <input
+                  id="phone"
                   onChange={onChange}
                   className="border-[2px] border-blue-400 w-[416px] h-[44px] rounded-md mt-[8px]"
                   type="text"
                   placeholder="place holder"
-                /> <p className="text-red-700">{phone}</p>
+                />{" "}
+                <p className="text-red-700">{phone}</p>
               </div>
             </div>
             <div className="ml-[32px]">
               <label htmlFor="firstName"> Password *</label>
               <div>
-                <input id="password"
+                <input
+                  id="Password"
                   onChange={onChange}
                   className="border-[2px] border-blue-400 w-[416px] h-[44px] rounded-md mt-[8px]"
-                  type="text"
+                  type="password"
                   placeholder="place holder"
-                /> <p className="text-red-700">{Password}</p>
+                />{" "}
+                <p className="text-red-700">{Password}</p>
               </div>
             </div>
             <div className="ml-[32px]">
               <label htmlFor="firstName"> Confirm Password *</label>
               <div>
-                <input id="confirmpassword"
+                <input
+                  id="ConfirmPassword"
                   onChange={onChange}
                   className="border-[2px] border-blue-400 w-[416px] h-[44px] rounded-md mt-[8px]"
-                  type="text"
+                  type="password"
                   placeholder="place holder"
                 />
-                 <p className="text-red-700">{ConfirmPassword}</p>
+                <p className="text-red-700">{ConfirmPassword}</p>
               </div>
             </div>
           </form>

@@ -11,6 +11,7 @@ export const Step1 = ({
   firstname,
   lastname,
   username,
+  enableButton,
   id,
 }) => {
   return (
