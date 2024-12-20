@@ -5,6 +5,7 @@ import { Step2 } from "./component/steps2";
 import { Step1 } from "./component/step1";
 import { Step4 } from "./component/laststep";
 import { useState } from "react";
+import { Phone } from "lucide-react";
 
 
 export default function Home() {
@@ -22,27 +23,52 @@ export default function Home() {
     firstname: "",
     username: "",
     lastname: "",
+    email: "",
+    phone: "",
+    Password: "",
+    ConfirmPassword: "",
   });
   const onChange = (e) => {
     const value = e.target.value;
     const ids = e.target.id;
     const newValues = { ...form, [ids]: value };
     setForm(newValues);
-    if (value === "" && ids==="firstname",ids==="lastname",ids==="username") {
+    if (value === "" && ids==="firstname") {
       setError({ ...error, [ids]: "empty " });
-    } else if (checkNumber(value)&& ids==="firstname", ids==="lastname") {
+    } else if (checkNumber(value)&& ids==="firstname") {
       setError({
         ...error,
         [ids]: " cannot contain numbers. ",
       });
-    } else if (checkRegex(value)) {
+    } else if (checkRegex(value)&&ids==="firstname") {
       setError({
         ...error,
         [ids]: " cannot contain special characters ",
       });
-    } else if (checkLowercase(value)) {
+    } else if (checkLowercase(value)&&ids==="firstname") {
       setError({ ...error, [ids]: "ehnii useg jijig baihgue ho" });
-    }else if(checkUsername(value) && ids==="username"){
+    } else if (value === "" && ids==="lastname") {
+      setError({ ...error, [ids]: "empty " });
+    } else if (checkNumber(value)&& ids==="lastname") {
+      setError({
+        ...error,
+        [ids]: " cannot contain numbers. ",
+      });
+    } else if (checkRegex(value)&&ids==="lastname") {
+      setError({
+        ...error,
+        [ids]: " cannot contain special characters ",
+      });
+    } else if (checkLowercase(value)&&ids==="lastname") {
+      setError({ ...error, [ids]: "ehnii useg jijig baihgue ho" });
+    }else if (value === "" && ids==="username") {
+      setError({ ...error, [ids]: "empty " });
+    }else if (value === "" && ids==="email") {
+      setError({ ...error, [ids]: "empty " });
+    }else if(!checkEmail(value)&&ids==="email")setError({...error, [ids]: "@ zaaval bich"
+
+    })
+    else if(checkUsername(value) && ids==="username"){
       setError({...error,[ids]:"urt 5aas urt bailgachih guijen"})
 
     }  else {
@@ -88,6 +114,11 @@ export default function Home() {
       
     return false;
       }
+       const checkEmail=(value)=>{ for(let i=0;value.length>i;i++){ if(value[i]==="@"){
+        return true
+       }}return false
+       
+       }
 //   const checkLenght = (value) => {
 //     for(let i=0;value.length>i;i++){
 //       if(value.length<5&&ids===username){
@@ -104,6 +135,7 @@ export default function Home() {
           firstname={error.firstname}
           lastname={error.lastname}
           form={form}
+          
           username={error.username}
           onChange={onChange}
           backStep={backStep}
@@ -112,7 +144,10 @@ export default function Home() {
       )}
       {currentStep == 2 && (
         <Step2
-          
+        email={error.email}
+        phone={error.phone}
+         Password={error.Password}
+         ConfirmPassword={error.ConfirmPassword}
           
           form={form}
           onChange={onChange}
