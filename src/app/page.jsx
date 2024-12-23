@@ -32,7 +32,7 @@ export default function Home() {
     const ids = e.target.id;
     const newValues = { ...form, [ids]: value };
     setForm(newValues);
-    if (value === "" && ids === "firstname") {
+    if ((value === "" && ids === "firstname") || value === false) {
       setError({ ...error, [ids]: "empty " });
     } else if (checkNumber(value) && ids === "firstname") {
       setError({
@@ -85,7 +85,7 @@ export default function Home() {
     } else if (value !== form.Password && ids === "ConfirmPassword") {
       setError({ ...error, [ids]: "Taardague ho" });
     } else {
-      setError({ ...error, [ids]: "" });
+      setError({ ...error, [ids]: " " });
     }
   };
 
@@ -194,6 +194,7 @@ export default function Home() {
       )}
       {currentStep == 3 && (
         <Step3
+          email={error.email}
           form={form}
           onChange={onChange}
           backStep={backStep}

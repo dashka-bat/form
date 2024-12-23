@@ -11,6 +11,18 @@ export const Step2 = ({
   Password,
   ConfirmPassword,
 }) => {
+  function isValid() {
+    if (
+      email == " " &&
+      phone == " " &&
+      Password == " " &&
+      ConfirmPassword == " "
+    ) {
+      return false;
+    } else {
+      return true;
+    }
+  }
   return (
     <div>
       <div className="bg-gray-300 w-screen h-screen flex justify-center items-center">
@@ -70,7 +82,7 @@ export const Step2 = ({
                 <input
                   id="ConfirmPassword"
                   onChange={onChange}
-                  className="border-[2px] border-blue-400 w-[416px] h-[44px] rounded-md mt-[8px]"
+                  className="border-[2px] border-blue-400 w-[416px] h-[44px] rounded-md mt-[8px] relative"
                   type="password"
                   placeholder="place holder"
                 />
@@ -79,7 +91,7 @@ export const Step2 = ({
             </div>
           </form>
           <button
-            className="ml-[32px] rounded-md bg-gray-300 mt-[80px] w-[100px] h-[44px]"
+            className="ml-[32px] rounded-md bg-gray-300 mt-[80px] w-[100px] h-[44px] absolute top-[740px]"
             onClick={() => {
               backStep();
             }}
@@ -87,10 +99,11 @@ export const Step2 = ({
             back
           </button>
           <button
+            disabled={isValid()}
             onClick={() => {
               setCurrentStep();
             }}
-            className="ml-[8px] rounded-md bg-gray-300 mt-[80px] w-[316px] h-[44px]"
+            className="ml-[8px] rounded-md bg-gray-300 mt-[80px] w-[316px] h-[44px] absolute top-[740px] left-[1020px]"
           >
             contiune 2/3 →
           </button>

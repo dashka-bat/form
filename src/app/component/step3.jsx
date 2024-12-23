@@ -15,7 +15,7 @@ export const Step3 = ({ setCurrentStep, backStep, onChange, form }) => {
   };
   return (
     <div>
-      <div className="bg-gray-300 w-screen h-screen flex justify-center items-center">
+      <div className="bg-gray-300 w-screen h-screen flex justify-center items-center ">
         <div className="bg-white w-[480px] h-[655px] ">
           <img
             className="mt-[32px] ml-[32px] w-[60px] h-[60px]"
@@ -38,9 +38,9 @@ export const Step3 = ({ setCurrentStep, backStep, onChange, form }) => {
               />
             </div>
             <div>
-              <p>Profile image </p>
+              <p className="ml-[32px]">Profile image </p>
               <label
-                className="ml-[32px] w-[416px] h-[180px] bg-gray-200 block "
+                className="ml-[32px] w-[416px] h-[180px] bg-gray-200 block rounded-md "
                 htmlFor="profileImage"
               >
                 <input
@@ -53,9 +53,12 @@ export const Step3 = ({ setCurrentStep, backStep, onChange, form }) => {
                   hidden
                 />
                 {imageDrop ? (
-                  <img className="w-full h-full" src={imageDrop}></img>
+                  <img
+                    className="w-full h-full  mt-[200px]"
+                    src={imageDrop}
+                  ></img>
                 ) : (
-                  <div className="w-[28px] h-[28px]">
+                  <div className="w-[28px] h-[28px] ml-[190px] pt-[75px]">
                     <svg
                       width="28"
                       height="28"

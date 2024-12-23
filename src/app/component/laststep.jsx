@@ -11,8 +11,10 @@ export const Step4 = ({ setCurrentStep, backStep, onChange, form }) => {
             src="main.png "
             alt=""
           />
-          <p className="text-[26px] text-bold">You're All Set 🔥</p>
-          <p>We have received your submission. Thank you!</p>
+          <p className="text-[26px] text-bold ml-[32px]">You're All Set 🔥</p>
+          <p className="ml-[32px]">
+            We have received your submission. Thank you!
+          </p>
         </div>
       </div>
     </div>

@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { Form } from "./Form";
-
 export const Step1 = ({
   setCurrentStep,
   backStep,
@@ -14,9 +13,22 @@ export const Step1 = ({
   enableButton,
   id,
 }) => {
+  function isValid() {
+    return (
+      !form.firstname ||
+      !form.lastname ||
+      !form.username ||
+      firstname !== " " ||
+      lastname !== " " ||
+      username !== " "
+    );
+  }
+
+  // localStorage.setItem(form.firstname, form.firstname);
+
   return (
     <div>
-      <div className="bg-gray-300 w-screen h-screen flex justify-center items-center">
+      <div className="bg-gray-300 w-screen h-screen flex justify-center items-center ">
         <div className="bg-white w-[480px] h-[655px] ">
           <img
             className="mt-[32px] ml-[32px] w-[60px] h-[60px]"
@@ -31,6 +43,7 @@ export const Step1 = ({
             <div className="ml-[32px] mt-[10px]">
               <label htmlFor="firstName"> Firstname *</label>
               <input
+                value={form.firstname}
                 id="firstname"
                 className="border-[2px] border-blue-400 w-[416px] h-[44px] rounded-md mt-[8px]"
                 type="text"
@@ -42,6 +55,7 @@ export const Step1 = ({
             <div className="ml-[32px]">
               <label htmlFor="lastName"> Lastname *</label>
               <input
+                value={form.lastname}
                 id="lastname"
                 className="border-[2px] border-blue-400 w-[416px] h-[44px] rounded-md mt-[8px]"
                 type="text"
@@ -51,11 +65,12 @@ export const Step1 = ({
               <p className="text-red-700">{lastname}</p>
             </div>
 
-            <div className="ml-[32px]">
+            <div className="ml-[32px] ">
               <label htmlFor="userName"> Username *</label>
               <input
+                value={form.username}
                 id="username"
-                className="border-[2px] border-blue-400 w-[416px] h-[44px] rounded-md mt-[8px]"
+                className="border-[2px] border-blue-400 w-[416px] h-[44px] rounded-md mt-[8px] relative"
                 type="text"
                 placeholder="place holder"
                 onChange={onChange}
@@ -64,10 +79,11 @@ export const Step1 = ({
             </div>
           </form>
           <button
+            disabled={isValid()}
             onClick={() => {
               setCurrentStep();
             }}
-            className="ml-[32px] rounded-md bg-gray-300 mt-[120px] w-[416px] h-[44px]"
+            className="ml-[32px] rounded-md bg-gray-300 w-[416px] h-[44px] absolute top-[800px]"
           >
             contiune 1/3 →
           </button>
